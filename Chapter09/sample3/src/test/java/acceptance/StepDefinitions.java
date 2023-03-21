@@ -16,7 +16,7 @@ public class StepDefinitions {
     private String a;
     private String b;
     private String result;
-    private String divresult;
+    private String quotient;
 
     @Given("^I have two numbers: (.*) and (.*)$")
     public void i_have_two_numbers(String a, String b) throws Throwable {
@@ -38,11 +38,11 @@ public class StepDefinitions {
     @When("^the calculator divides them$")
     public void the_calculator_divides_them() throws Throwable {
         String url = String.format("%s/div?a=%s&b=%s", server, a, b);
-        divresult = restTemplate.getForObject(url, String.class);
+        quotient = restTemplate.getForObject(url, String.class);
     }
 
-    @Then("^I receive (.*) as the divresult$")
-    public void i_receive_as_a_divresult(String expectedResult) throws Throwable {
-        assertEquals(expectedResult, divresult);
+    @Then("^I receive (.*) as the quotient$")
+    public void i_receive_as_a_quotient(String expectedResult) throws Throwable {
+        assertEquals(expectedResult, quotient);
     }
 }
